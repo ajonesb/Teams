@@ -5,7 +5,7 @@ This is from the Tour of Heroes documentation https://angular.io/tutorial that I
 
 The objective here was to use the Tour of Heroes documentation tutorial and what I learned from the different sections in order to then modify the code and create two teams list. Unlike the Tour of Heroes which is one hero list and shows a dashboard with details and a search, here I just wanted to show two seperate teams list to add and remove team players (heroes). 
 
-Modifications made and where I left off (not complete): 
+# Modifications made and where I left off (not complete): 
 
 Dashboard component files, hero detail component files, and hero search component files were deleted.
 
