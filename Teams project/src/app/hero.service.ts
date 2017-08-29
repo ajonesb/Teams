@@ -21,16 +21,16 @@ export class HeroService {
   }
 
 
-  getHero(id: number): Promise<Hero> {
-    const url = `${this.heroesUrl}/${id}`;
+  getHero(numero: number): Promise<Hero> {
+    const url = `${this.heroesUrl}/${numero}`;
     return this.http.get(url)
       .toPromise()
       .then(response => response.json().data as Hero)
       .catch(this.handleError);
   }
 
-  delete(id: number): Promise<void> {
-    const url = `${this.heroesUrl}/${id}`;
+  delete(numero: number): Promise<void> {
+    const url = `${this.heroesUrl}/${numero}`;
     return this.http.delete(url, {headers: this.headers})
       .toPromise()
       .then(() => null)
@@ -46,7 +46,7 @@ export class HeroService {
   }
 
   update(hero: Hero): Promise<Hero> {
-    const url = `${this.heroesUrl}/${hero.id}`;
+    const url = `${this.heroesUrl}/${hero.numero}`;
     return this.http
       .put(url, JSON.stringify(hero), {headers: this.headers})
       .toPromise()
