@@ -1,7 +1,9 @@
 import { InMemoryDbService } from 'angular-in-memory-web-api';
+
+
 export class InMemoryDataService implements InMemoryDbService {
   createDb() {
-    const heroes = [
+    let heroes = [
       { numero: 0,  name: 'Zero' },
       { numero: 11, name: 'Mr. Nice' },
       { numero: 12, name: 'Narco' },
@@ -14,11 +16,8 @@ export class InMemoryDataService implements InMemoryDbService {
       { numero: 19, name: 'Magma' },
       { numero: 20, name: 'Tornado' }
     ];
-    return {heroes};
-  }
-
-  createDbTwo() {
-    const heroes = [
+//So if you have two collections, then just add it as a another property
+    let equipo = [
       { numero: 0,  name: 'Alan' },
       { numero: 11, name: 'Bob' },
       { numero: 12, name: 'Carlos' },
@@ -31,6 +30,8 @@ export class InMemoryDataService implements InMemoryDbService {
       { numero: 19, name: 'Mario' },
       { numero: 20, name: 'Tom' }
     ];
-    return {heroes};
+
+    return {heroes, equipo};
   }
+
 }
