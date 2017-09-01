@@ -22,10 +22,10 @@ export class HeroService {
   }
 
   //delete function to delete heroes for teams list on Team 1
-  delete(numero: number): Promise<void> {
-    const url = `${this.heroesUrl}/${numero}`;
-    return this.http.delete(url, {headers: this.headers})
-      .toPromise()
+  delete(numero: number): Promise<void> {//pass in id to delete
+    const url = `${this.heroesUrl}/${numero}`;//declare specific url with numero (previously id) delete
+    return this.http.delete(url, {headers: this.headers}) //call http to delete 
+      .toPromise()//convert to promise
       .then(() => null)
       .catch(this.handleError);
   }
