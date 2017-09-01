@@ -23,23 +23,25 @@ export class HeroesComponent implements OnInit {
         .then(heroes => this.heroes = heroes);
   }
 
-  add(name: string): void {
-    name = name.trim();
-    if (!name) { return; }
-    this.heroService.create(name)
-      .then(hero => {
-        this.heroes.push(hero);
-        this.selectedHero = null;
+  //implementing add method from add on heroes.component.html
+  add(name: string): void { //pass in name of string from input
+    name = name.trim();//trim to clear additional spaces after adding name
+    if (!name) { return; }//if name does not exist
+    this.heroService.create(name) //creates name to add to web api 
+      .then(hero => {//then get heroe back, will put it in heroes array
+        this.heroes.push(hero);//pushes heroe to add to page
+        this.selectedHero = null; //clears selected heroe.
       });
   }
-
+//implementing delete funcionality of heroe
   delete(hero: Hero): void {
-    this.heroService
-        .delete(hero.numero)
-        .then(() => {
-          this.heroes = this.heroes.filter(h => h !== hero);
-          if (this.selectedHero === hero) { this.selectedHero = null; }
-        });
+    this.heroService.delete(hero.numero)//call the heroe service, then delete, and pass heroe numero (used to be id)
+    .then(() => {
+      this.heroes = this.heroes.filter(h => h !== hero);//filter will remove if it's not heroe
+      if (this.selectedHero === hero) { this.selectedHero = null; }
+      //if selected heroe and deleted, need to null selected heroe.
+      //otherwise will give an error since selected heroe does not exist.
+    });
   }
 
   ngOnInit(): void {
@@ -50,5 +52,7 @@ export class HeroesComponent implements OnInit {
     this.selectedHero = hero;
   }
 
-  
+  /* gotoDetail(): void {
+    this.router.navigate(['/detail', this.selectedHero.id]);
+  } */
 }
