@@ -12,6 +12,7 @@ export class HeroService {
 
   constructor(private http: Http) { }//inject http
 
+  // This function here gets heroes from in-memory-data.service.ts to show them on Team 1 
   getHeroes(): Promise<Hero[]> { //get returns an observable 
     return this.http.get(this.heroesUrl)
                .toPromise()//converted to promise, imported from rxjs
@@ -20,7 +21,7 @@ export class HeroService {
                /*At the end of getHeroes(), you catch server failures and pass them to an error handler. */ 
   }
 
-  //delete function to delete heroes for teams list on team 1
+  //delete function to delete heroes for teams list on Team 1
   delete(numero: number): Promise<void> {
     const url = `${this.heroesUrl}/${numero}`;
     return this.http.delete(url, {headers: this.headers})
@@ -29,7 +30,7 @@ export class HeroService {
       .catch(this.handleError);
   }
 
-  // this function here created heroe to add to list on team 1
+  // this function here created heroe to add to list on Team 1
   create(name: string): Promise<Hero> {
     return this.http
       .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
