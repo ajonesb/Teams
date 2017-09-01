@@ -7,7 +7,6 @@ import { Hero } from './hero';
 
 @Injectable()
 export class HeroService {
-
   private headers = new Headers({'Content-Type': 'application/json'});
   private heroesUrl = 'api/heroes';  // URL to web api
 
@@ -21,15 +20,7 @@ export class HeroService {
                /*At the end of getHeroes(), you catch server failures and pass them to an error handler. */ 
   }
 
- /*  get specific heroe detail to show, not needed to add and delete heroes. 
- getHero(numero: number): Promise<Hero> {
-    const url = `${this.heroesUrl}/${numero}`;//string interpolation to get specific hero
-    return this.http.get(url)
-      .toPromise()
-      .then(response => response.json().data as Hero)
-      .catch(this.handleError);
-  } */
-
+  //delete function to delete heroes for teams list on team 1
   delete(numero: number): Promise<void> {
     const url = `${this.heroesUrl}/${numero}`;
     return this.http.delete(url, {headers: this.headers})
@@ -38,6 +29,7 @@ export class HeroService {
       .catch(this.handleError);
   }
 
+  // this function here created heroe to add to list on team 1
   create(name: string): Promise<Hero> {
     return this.http
       .post(this.heroesUrl, JSON.stringify({name: name}), {headers: this.headers})
@@ -46,14 +38,14 @@ export class HeroService {
       .catch(this.handleError);
   }
 
-  update(hero: Hero): Promise<Hero> {
+ /*  update(hero: Hero): Promise<Hero> {
     const url = `${this.heroesUrl}/${hero.numero}`;
     return this.http
       .put(url, JSON.stringify(hero), {headers: this.headers})
       .toPromise()
       .then(() => hero)
       .catch(this.handleError);
-  }
+  } */
 
   private handleError(error: any): Promise<any> {
     console.error('An error occurred', error); // for demo purposes only
