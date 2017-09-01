@@ -11,23 +11,24 @@ export class HeroService {
   private headers = new Headers({'Content-Type': 'application/json'});
   private heroesUrl = 'api/heroes';  // URL to web api
 
-  constructor(private http: Http) { }
+  constructor(private http: Http) { }//inject http
 
-  getHeroes(): Promise<Hero[]> {
+  getHeroes(): Promise<Hero[]> { //get returns an observable 
     return this.http.get(this.heroesUrl)
-               .toPromise()
-               .then(response => response.json().data as Hero[])
-               .catch(this.handleError);
+               .toPromise()//converted to promise, imported from rxjs
+               .then(response => response.json().data as Hero[])//convert to js object, heroe array
+               .catch(this.handleError); 
+               /*At the end of getHeroes(), you catch server failures and pass them to an error handler. */ 
   }
 
-
-  getHero(numero: number): Promise<Hero> {
-    const url = `${this.heroesUrl}/${numero}`;
+ /*  get specific heroe detail to show, not needed to add and delete heroes. 
+ getHero(numero: number): Promise<Hero> {
+    const url = `${this.heroesUrl}/${numero}`;//string interpolation to get specific hero
     return this.http.get(url)
       .toPromise()
       .then(response => response.json().data as Hero)
       .catch(this.handleError);
-  }
+  } */
 
   delete(numero: number): Promise<void> {
     const url = `${this.heroesUrl}/${numero}`;
